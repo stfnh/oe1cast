@@ -155,7 +155,7 @@
 			initializeCastApi = function() {
 				var context = cast.framework.CastContext.getInstance();
 				context.setOptions({
-					receiverApplicationId: oe1cast.castAppId || process.env.CAST_API_KEY,
+					receiverApplicationId: oe1cast.castAppId,
 					autoJoinPolicy: chrome.cast.AutoJoinPolicy.ORIGIN_SCOPED,
 					resumeSavedSession: true
 				});
