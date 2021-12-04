@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>FM4cast</title>
+		<title>OE1cast</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<script src="js/apikey.js" charset="utf-8"></script>
 
@@ -15,22 +15,22 @@
 		<meta name="msapplication-TileColor" content="#ffe501">
 		<meta name="msapplication-config" content="/assets/browserconfig.xml">
 		<meta name="theme-color" content="#ffe501">
-		<meta property="og:image" content="https://fm4cast.deebas.com/assets/og-image.jpg">
+		<meta property="og:image" content="https://stfnh.github.io/oe1cast/assets/og-image.jpg">
 		<meta property="og:image:height" content="355">
 		<meta property="og:image:width" content="679">
-		<meta property="og:title" content="FM4cast">
-		<meta property="og:description" content="Play Radio FM4 on your Cast device">
+		<meta property="og:title" content="OE1cast">
+		<meta property="og:description" content="Play Radio OE1 on your Cast device">
 		<meta property="og:type" content="website">
-		<meta property="og:url" content="https://fm4cast.deebas.com">
-		<meta itemprop="name" content="FM4cast" />
-		<meta itemprop="description" content="Play Radio FM4 on your Cast device" />
-		<meta itemprop="image" content="https://fm4cast.deebas.com/assets/og-image.jpg" />
+		<meta property="og:url" content="https://stfnh.github.io/oe1cast">
+		<meta itemprop="name" content="OE1cast" />
+		<meta itemprop="description" content="Play Radio OE1 on your Cast device" />
+		<meta itemprop="image" content="https://stfnh.github.io/oe1cast/assets/og-image.jpg" />
 
 
 		<style media="screen">
 			google-cast-launcher {
 				--disconnected-color: #c1c1c1;
-				--connected-color: #ffe501;
+				--connected-color: #b60a06;
 			}
 			.cast-button {
 				max-width: 100pt;
@@ -38,10 +38,10 @@
 			}
 
 			body {
-				background-color: #242424;
-				color: #c1c1c1;
+				background-color: #fff;
+				color: #000;
 				margin: 0;
-				font-family: Verdana;
+				font-family: Arial, Helvetica, Sans-Serif;;
 			}
 
 			.main {
@@ -49,28 +49,26 @@
 			}
 			.yellow {
 				position:relative;
-				background-color: #ffe501;
+				background-color: #b60a06;
 				height: 100pt;
 			}
-			.black {
+			.white {
 				position:relative;
 				padding-top: 80pt;
 			}
 			.text {
 				font-size: 60pt;
 				font-weight: bold;
-				transform: scale(1.4,1);
-				letter-spacing: -7pt;
 				right: 0px;
-				margin-right: 35pt;
+				margin-right: 20pt;
 				position: absolute;
 			}
-			.fm4.text {
-				color: #242424;
+			.oe1.text {
+				color: #fff;
 				bottom: 0px;
 			}
 			.cast.text {
-				color: #ffe501;
+				color: #000;
 				top: 0px;
 			}
 			.cast-info {
@@ -86,7 +84,6 @@
 				font-size: 8pt;
 				padding: 8pt;
 				text-align: right;
-				background-color: #242424;
 			}
 			.contribute a {
 				color: inherit;
@@ -116,19 +113,20 @@
 	<body>
 
 		<div class="main">
-			<div class="yellow"><div class="fm4 text">FM4</div></div>
-			<div class="black">
+			<div class="yellow"><div class="oe1 text">OE1</div></div>
+			<div class="white">
 				<div class="cast text">cast</div>
 				<div class="cast-button">
 					<google-cast-launcher></google-cast-launcher>
 				</div>
 				<div class="cast-info">
-					<p>FM4cast funktioniert im <b>Chrome</b> unter Window, Linux, MacOS, Android und iOS.</p>
+					<p>OE1cast funktioniert im <b>Chrome</b> unter Window, Linux, MacOS, Android und iOS.</p>
 					<p>Du musst dich im selben Netz wie das Cast-f&auml;hige Ger&auml;t befinden.</p>
 				</div>
 				<div class="debugLog"></div>
 				<div class="contribute">
-					Anregungen, Fehlerberichte oder Weiterentwicklungen kannst du hier abliefern: <a target="_blank" href="https://github.com/sehaas/fm4cast">github.com/sehaas/fm4cast</a>
+					<p>Anregungen, Fehlerberichte oder Weiterentwicklungen kannst du hier abliefern: <a target="_blank" href="https://github.com/stfnh/oe1cast">github.com/stfnh/oe1cast</a></p>
+					<p>Forked from <a target="_blank" href="https://github.com/sehaas/fm4cast">github.com/sehaas/fm4cast</a> </p>
 				</div>
 			</div>
 		</div>
@@ -137,7 +135,7 @@
 			if ('serviceWorker' in navigator) {
 				navigator.serviceWorker.register('/service-worker.js');
 			}
-			window['fm4castDebug'] = !/debug/.test(window.location.search) ?
+			window['oe1castDebug'] = !/debug/.test(window.location.search) ?
 				() => {} : (callback, message) => {
 					var logDiv = document.createElement('div');
 					logDiv.innerHTML = '<span>' + new Date().toISOString() + '</span>' +
@@ -149,7 +147,7 @@
 				};
 
 			window['__onGCastApiAvailable'] = function(isAvailable) {
-				fm4castDebug('GCastApiAvailable', isAvailable);
+				oe1castDebug('GCastApiAvailable', isAvailable);
 				if (isAvailable) {
 					initializeCastApi();
 				}
@@ -157,14 +155,14 @@
 			initializeCastApi = function() {
 				var context = cast.framework.CastContext.getInstance();
 				context.setOptions({
-					receiverApplicationId: fm4cast.castAppId,
+					receiverApplicationId: oe1cast.castAppId,
 					autoJoinPolicy: chrome.cast.AutoJoinPolicy.ORIGIN_SCOPED,
 					resumeSavedSession: true
 				});
 				context.addEventListener(
 					cast.framework.CastContextEventType.CAST_STATE_CHANGED,
 					function(event) {
-						fm4castDebug(event.type, event.castState);
+						oe1castDebug(event.type, event.castState);
 						switch(event.castState) {
 							case 'NO_DEVICES_AVAILABLE':
 								document.getElementsByClassName('cast-info')[0].style.display = 'block';
@@ -184,21 +182,21 @@
 				var playerController = new cast.framework.RemotePlayerController(player);
 				playerController.addEventListener(
 					cast.framework.RemotePlayerEventType.IS_CONNECTED_CHANGED, function(event) {
-						fm4castDebug(event.field, event.value);
+						oe1castDebug(event.field, event.value);
 						if (player.isConnected) {
-							initializeFM4LiveStream();
+							initializeOE1LiveStream();
 						}
 					});
 
 			};
 
-			initializeFM4LiveStream = function() {
+			initializeOE1LiveStream = function() {
 				var castSession = cast.framework.CastContext.getInstance().getCurrentSession();
-				var mediaInfo = new chrome.cast.media.MediaInfo('https://orf-live.ors-shoutcast.at/fm4-q1a','audio/mpeg');
+				var mediaInfo = new chrome.cast.media.MediaInfo('https://orf-live.ors-shoutcast.at/oe1-q1a','audio/mpeg');
 				var request = new chrome.cast.media.LoadRequest(mediaInfo);
 				castSession.loadMedia(request).then(
-					function() { fm4castDebug('session.loadMedia', 'success'); },
-					function(errorCode) { fm4castDebug('session.loadMedia', errorCode); });
+					function() { oe1castDebug('session.loadMedia', 'success'); },
+					function(errorCode) { oe1castDebug('session.loadMedia', errorCode); });
 			}
 		</script>
 

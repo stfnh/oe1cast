@@ -1,20 +1,20 @@
 {
-	"name": "FM4cast",
-	"short_name": "FM4cast",
+	"name": "OE1cast",
+	"short_name": "OE1cast",
 	"icons": [
 		{
-			"src": "/assets/android-chrome-192x192.png",
+			"src": "/assets/manifest-icon-192.maskable.png",
 			"sizes": "192x192",
 			"type": "image/png"
 		},
 		{
-			"src": "/assets/android-chrome-512x512.png",
+			"src": "/assets/manifest-icon-512.maskable.png",
 			"sizes": "512x512",
 			"type": "image/png"
 		}
 	],
-	"theme_color": "#ffe501",
-	"background_color": "#ffe501",
+	"theme_color": "#b60a06",
+	"background_color": "#b60a06",
 	"start_url": "/",
 	"display": "standalone"
 }
