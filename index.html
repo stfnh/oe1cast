@@ -133,7 +133,7 @@
 
 		<script>
 			if ('serviceWorker' in navigator) {
-				navigator.serviceWorker.register('/service-worker.js', { scope: '/oe1cast/' } );
+				navigator.serviceWorker.register('/service-worker.js');
 			}
 			window['oe1castDebug'] = !/debug/.test(window.location.search) ?
 				() => {} : (callback, message) => {
